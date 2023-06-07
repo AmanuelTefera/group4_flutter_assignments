@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group4_flutter_assignment/screens/useraccount.dart';
 
 class UserInputForms extends StatefulWidget {
   @override
@@ -109,9 +110,10 @@ class _UserInputFormsState extends State<UserInputForms> {
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                // Form is valid, perform necessary actions
-                // For example, save the user's input to a database
-                // or navigate to the next screen
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const useraccounts()));
               }
             },
             child: const Text('Create User'),
