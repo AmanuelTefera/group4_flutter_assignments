@@ -25,6 +25,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   late String _firstName;
   late String _lastName;
+  late String _email;
   late String _password;
   late String _rePassword;
 
@@ -35,6 +36,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       print('Creating user...');
       print('First Name: $_firstName');
       print('Last Name: $_lastName');
+      print('Email: $_email');
       print('Password: $_password');
     }
   }
@@ -79,6 +81,25 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 },
                 onSaved: (value) {
                   _lastName = value!;
+                },
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Email is required';
+                  }
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _email = value!;
                 },
               ),
               SizedBox(height: 16.0),
