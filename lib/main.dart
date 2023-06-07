@@ -28,6 +28,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   late String _email;
   late String _password;
   late String _rePassword;
+  bool _passwordVisible = false;
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -107,8 +108,18 @@ class _RegistrationFormState extends State<RegistrationForm> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Password',
+                  suffixIcon: IconButton(
+                    icon: _passwordVisible
+                        ? Icon(Icons.visibility_off)
+                        : Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
+                  ),
                 ),
-                obscureText: true,
+                obscureText: !_passwordVisible,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Password is required';
