@@ -93,7 +93,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   if (value!.isEmpty) {
                     return 'Email is required';
                   }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
                     return 'Please enter a valid email address';
                   }
                   return null;
@@ -111,6 +112,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Password is required';
+                  }
+                  if (value.length < 8) {
+                    return 'Password must be at least 8 characters long';
+                  }
+                  if (!RegExp(r'^(?=.*?[!@#\$&*~]).{8,}$').hasMatch(value)) {
+                    return 'Password must contain at least one special character';
                   }
                   return null;
                 },
